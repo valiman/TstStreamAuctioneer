@@ -1,5 +1,12 @@
 ﻿app.controller('AuctionController', function ($scope) {
-    $scope.userName = "valle";
+    this.buyout = function (data) {
+        if (data != null) {
+            alert('Are you sure you want to buyout hosting from ' + data.userName + '?');
+        } else {
+            alert('Error, check console!');
+            console.log('No data were sent to buyout function!');
+        }
+    }
 
     //Data
     $scope.auctionList = [];
@@ -38,4 +45,28 @@
         $scope.auctionList = auctionListStorage.slice((pageNo * 1), ((pageNo * 1) + 10));
     };
     //End
+
+    //Auction Table Row Events
+    $scope.tableRowSelectedData = {};
+
+    $(document).ready(function ($scope) {
+        var auctionTable = $('#auctionTable').DataTable({
+            paging: false,
+            info: false
+        });
+        $('#auctionTable tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                auctionTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#button').click(function () {
+            auctionTable.row('.selected').remove().draw(false);
+        });
+    });
 });

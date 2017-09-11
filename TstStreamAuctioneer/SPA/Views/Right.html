@@ -1,8 +1,21 @@
 ﻿<div ng-controller="AuctionController as auctionCtrl">
     <p>
-        <div class="form-group form-inline auction-form pull-right">
-            <button type="button" class="btn btn-default form-control">Buyout</button>
-            <button type="button" class="btn btn-default form-control" ng-class="{disabled:(bidValue == undefined)}" ng-model="bidBtn">Bid</button>
+        <div class="form-group form-inline auction-form">
+            <button 
+                    type="button" 
+                    class="btn btn-default form-control" 
+                    ng-class="{disabled:(tableRowSelectedData.row == null )}" 
+                    ng-model="buyoutBtn" 
+                    ng-click="auctionCtrl.buyout(tableRowSelectedData.row)">
+                Buyout
+            </button>
+            <button 
+                    type="button" 
+                    class="btn btn-default form-control" 
+                    ng-class="{disabled:(bidValue == null)}" 
+                    ng-model="bidBtn">
+                Bid
+            </button>
             <input class="form-control" type="number" ng-model="bidValue" id="bidValue"> $
 
             <table class="table" id="auctionTable">
@@ -26,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="auction in auctionList">
+                    <tr ng-repeat="auction in auctionList" ng-click="tableRowSelectedData.row = auction">
                         <td>{{auction.userRating}}</td>
                         <td>{{auction.userName}}</td>
                         <td>{{auction.avgViewers}}</td>
@@ -49,25 +62,5 @@
     </p>
 </div>
 <script>
-    $(document).ready(function () {
-        var auctionTable = $('#auctionTable').DataTable({
-            paging: false,
-            info: false
-        });
-
-        $('#auctionTable tbody').on('click', 'tr', function () {
-            if ($(this).hasClass('selected')) {
-                $(this).removeClass('selected');
-                
-            }
-            else {
-                auctionTable.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        });
-
-        $('#button').click(function () {
-            auctionTable.row('.selected').remove().draw(false);
-        });
-    });
+    
 </script>

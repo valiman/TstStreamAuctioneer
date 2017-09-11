@@ -1270,6 +1270,7 @@
     <Content Include="SPA\Controllers\AuctionController.js" />
     <Content Include="SPA\Controllers\TabsController.js" />
     <Content Include="SPA\Views\Left.html" />
+    <Content Include="SPA\Views\Modal.html" />
     <Content Include="SPA\Views\Right.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
