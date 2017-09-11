@@ -1,0 +1,73 @@
+﻿<div ng-controller="AuctionController as auctionCtrl">
+    <p>
+        <div class="form-group form-inline auction-form pull-right">
+            <button type="button" class="btn btn-default form-control">Buyout</button>
+            <button type="button" class="btn btn-default form-control" ng-class="{disabled:(bidValue == undefined)}" ng-model="bidBtn">Bid</button>
+            <input class="form-control" type="number" ng-model="bidValue" id="bidValue"> $
+
+            <table class="table" id="auctionTable">
+                <thead>
+                    <tr>
+                        <th>
+                            User Rating
+                        </th>
+                        <th>
+                            Twitch User
+                        </th>
+                        <th>
+                            Avg. Viewers
+                        </th>
+                        <th>
+                            Price ($)
+                        </th>
+                        <th>
+                            Highest bid ($)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="auction in auctionList">
+                        <td>{{auction.userRating}}</td>
+                        <td>{{auction.userName}}</td>
+                        <td>{{auction.avgViewers}}</td>
+                        <td>{{auction.price}}</td>
+                        <td>{{auction.highestBid}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--
+            ng-model holds the clicked-number/page.
+            ng-change calls the method responsible for getting the next 10 rows.
+            -->
+            <ul uib-pagination
+                total-items="30"
+                max-size="10"
+                ng-model="currentPage"
+                ng-change="setPage()"></ul>
+        </div>
+    </p>
+</div>
+<script>
+    $(document).ready(function () {
+        var auctionTable = $('#auctionTable').DataTable({
+            paging: false,
+            info: false
+        });
+
+        $('#auctionTable tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                
+            }
+            else {
+                auctionTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#button').click(function () {
+            auctionTable.row('.selected').remove().draw(false);
+        });
+    });
+</script>

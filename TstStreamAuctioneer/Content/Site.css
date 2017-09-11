@@ -1,24 +1,37 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿p {
+    padding: 10px 10px 0px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
+pre {
+    background-color: white;
     white-space: normal;
+    margin: 0 0 0 5px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#bidValue {
+    max-width: 70px !important;
 }
+
+.auction-form {
+    margin: -12px 0 0 0;
+}
+
+
+/* Temp color, too bright x_x! */
+body {
+    margin: 0 auto;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #cfd2da;
+    background-color: #252830;
+    max-width: 70%;
+}
+
+#auctionTable td {
+    color: black;
+}
+
+/*
+.button {
+    background-color: #434857;
+}
+    */
