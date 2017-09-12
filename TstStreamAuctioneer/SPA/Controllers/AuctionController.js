@@ -1,11 +1,40 @@
-﻿app.controller('AuctionController', function ($scope) {
-    this.buyout = function (data) {
-        if (data != null) {
-            alert('Are you sure you want to buyout hosting from ' + data.userName + '?');
+﻿app.controller('AuctionController', function ($scope, $uibModal) {
+
+    $scope.testValue = 'apa';
+
+    this.buyout = function (dataObj) {
+        if (dataObj != null) {
+            console.log(dataObj.userName);
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: '/SPA/Views/Modal/Buyout.html',
+                controller: 'ModalController',
+                size: 'sm',
+                resolve: {
+                    data: dataObj
+                }
+            });
+            
+            modalInstance.result.then(function (item) {
+                //$scope.data.lowstockdata.selectedItem = item;
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+                });
+
         } else {
             alert('Error, check console!');
             console.log('No data were sent to buyout function!');
         }
+
+
+        //Return?
+        /*
+        modalInstance.result.then(function (item) {
+            $scope.data.lowstockdata.selectedItem = item;
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+        */
     }
 
     //Data
