@@ -1,7 +1,5 @@
 ﻿app.controller('AuctionController', function ($scope, $uibModal) {
 
-    $scope.testValue = 'apa';
-
     this.buyout = function (dataObj) {
         if (dataObj != null) {
             console.log(dataObj.userName);
@@ -15,8 +13,8 @@
                 }
             });
             
-            modalInstance.result.then(function (item) {
-                //$scope.data.lowstockdata.selectedItem = item;
+            modalInstance.result.then(function (data) {
+                buyAuction({ userName: 'KniX' }, data);
             }, function () {
                 console.log('Modal dismissed at: ' + new Date());
                 });
@@ -25,17 +23,16 @@
             alert('Error, check console!');
             console.log('No data were sent to buyout function!');
         }
-
-
-        //Return?
-        /*
-        modalInstance.result.then(function (item) {
-            $scope.data.lowstockdata.selectedItem = item;
-        }, function () {
-            console.log('Modal dismissed at: ' + new Date());
-        });
-        */
     }
+
+    var buyAuction = function (user, auction) {
+        //This part will be dynamic with signalR.. it has to be auto-updating for everyone viewing the table.
+        console.log('User ' + user.userName + ' initiated in buying auctionID: ' + auction.id);
+
+        $scope.auctionList = $scope.auctionList.filter(function (o) {
+            return o.id != auction.id;
+        });
+    };
 
     //Data
     $scope.auctionList = [];
@@ -45,6 +42,7 @@
         for (var i = 0; i < 30; i++) {
             var rndN = Math.floor((Math.random() * 10) + 1);
             var obj = {
+                id: i,
                 userRating: ((rndN * i) / 2),
                 userName: 'user' + i,
                 avgViewers: rndN * i,
