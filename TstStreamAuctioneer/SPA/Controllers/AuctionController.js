@@ -18,7 +18,6 @@
             }, function () {
                 console.log('Modal dismissed at: ' + new Date());
                 });
-
         } else {
             alert('Error, check console!');
             console.log('No data were sent to buyout function!');

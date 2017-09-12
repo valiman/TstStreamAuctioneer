@@ -1,25 +1,32 @@
-﻿<div ng-controller="TabsController as tabCtrl">
-    <p>
-        <uib-tabset>
-            <uib-tab index="1">
-                <uib-tab-heading>KniX</uib-tab-heading>
-                first tab
-            </uib-tab>
-            <uib-tab index="2">
-                <uib-tab-heading>History</uib-tab-heading>
-                second tab
-            </uib-tab>
-            <uib-tab index="3">
-                <uib-tab-heading>
-                    <i class="glyphicon glyphicon-bell"></i>
-                Chat
-                </uib-tab-heading>
-                third tab
-            </uib-tab>
-            
-            <uib-tab index="$index + 1" ng-repeat="tab in tabs" disable="tab.disabled">
-                {{tab.content}}
-            </uib-tab>
-        </uib-tabset>
-    </p>
+﻿<div ng-controller="AuthController as authCtrl">
+    {{_isLoggedIn}}
+    <div ng-controller="TabsController as tabsCtrl">
+        <p ng-show="_isLoggedIn">
+            <uib-tabset>
+                <uib-tab index="1">
+                    <uib-tab-heading>KniX</uib-tab-heading>
+                    first tab
+                </uib-tab>
+                <uib-tab index="2">
+                    <uib-tab-heading>History</uib-tab-heading>
+                    second tab
+                </uib-tab>
+                <uib-tab index="3">
+                    <uib-tab-heading>
+                        <i class="glyphicon glyphicon-bell"></i>
+                        Chat
+                    </uib-tab-heading>
+                    third tab
+                </uib-tab>
+
+                <uib-tab index="$index + 1" ng-repeat="tab in tabs" disable="tab.disabled">
+                    {{tab.content}}
+                </uib-tab>
+            </uib-tabset>
+        </p>
+        <p ng-show="!_isLoggedIn">
+            Login through Twitch.TV-OAuth to see your options.
+            <button class="btn btn-default" ng-click="tabsCtrl.Login()">Login</button>
+        </p>
+    </div>
 </div>

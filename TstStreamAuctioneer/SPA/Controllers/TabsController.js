@@ -1,3 +1,4 @@
-﻿app.controller('TabsController', function ($scope) {
-    
+﻿app.controller('TabsController', function ($scope, AuthService) {
+
+
 });
