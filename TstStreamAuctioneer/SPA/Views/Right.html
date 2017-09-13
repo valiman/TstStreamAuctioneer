@@ -1,23 +1,22 @@
 ﻿<div ng-controller="AuctionController as auctionCtrl">
     <p>
         <div class="form-group form-inline auction-form">
-            <button 
-                    type="button" 
-                    class="btn btn-default form-control" 
-                    ng-class="{disabled:(tableRowSelectedData.row == null)}" 
-                    ng-model="buyoutBtn" 
-                    ng-click="auctionCtrl.buyout(tableRowSelectedData.row)">
-                Buyout
-            </button>
-            <button 
-                    type="button" 
-                    class="btn btn-default form-control" 
-                    ng-class="{disabled:(bidValue == null)}" 
-                    ng-model="bidBtn">
-                Bid
-            </button>
-            <input class="form-control" type="number" ng-model="bidValue" id="bidValue"> $
-
+            <div ng-show="_isLoggedIn">
+                <button type="button"
+                        class="btn btn-default form-control"
+                        ng-class="{disabled:(tableRowSelectedData.row == null)}"
+                        ng-model="buyoutBtn"
+                        ng-click="auctionCtrl.buyout(tableRowSelectedData.row)">
+                    Buyout
+                </button>
+                <button type="button"
+                        class="btn btn-default form-control"
+                        ng-class="{disabled:(bidValue == null)}"
+                        ng-model="bidBtn">
+                    Bid
+                </button>
+                <input class="form-control" type="number" ng-model="bidValue" id="bidValue"> $
+            </div>
             <table class="table" id="auctionTable">
                 <thead>
                     <tr>

@@ -25,7 +25,6 @@ app.factory('AuthService', function () {
         },
         logout: function () { return false; },
         isLoggedIn: function () {
-            console.log('ding');
             return _isLoggedIn;
         },
         currentUser: function () { return user; }
@@ -36,7 +35,6 @@ app.controller('AuthController', function ($scope, AuthService) {
     $scope._isLoggedIn = false;
 
     $scope.Login = function () {
-        console.log('login..');
         var user = {
             userName: 'KniX'
         }
@@ -48,6 +46,5 @@ app.controller('AuthController', function ($scope, AuthService) {
         if ($scope._isLoggedIn == true) {
             console.log('woot!');
         }
-        console.log('test.');
     });
 });
