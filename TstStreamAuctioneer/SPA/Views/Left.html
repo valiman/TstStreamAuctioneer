@@ -1,5 +1,4 @@
 ﻿<div ng-controller="AuthController as authCtrl">
-    {{_isLoggedIn}}
     <div ng-controller="TabsController as tabsCtrl">
         <p ng-show="_isLoggedIn">
             <uib-tabset>
@@ -26,7 +25,7 @@
         </p>
         <p ng-show="!_isLoggedIn">
             Login through Twitch.TV-OAuth to see your options.
-            <button class="btn btn-default" ng-click="tabsCtrl.Login()">Login</button>
+            <button class="btn btn-default" ng-click="Login()">Login</button>
         </p>
     </div>
 </div>

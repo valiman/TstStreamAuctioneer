@@ -35,7 +35,8 @@ app.factory('AuthService', function () {
 app.controller('AuthController', function ($scope, AuthService) {
     $scope._isLoggedIn = false;
 
-    this.Login = function () {
+    $scope.Login = function () {
+        console.log('login..');
         var user = {
             userName: 'KniX'
         }
