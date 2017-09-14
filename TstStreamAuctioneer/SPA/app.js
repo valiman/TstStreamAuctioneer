@@ -13,37 +13,34 @@ app.directive('rightView', function () {
 });
 
 app.factory('AuthService', function () {
-    _user = null;
-    _isLoggedIn = false;
 
     return {
         login: function (user) {
-            _user = user;
-            _isLoggedIn = true;
             console.log('User ' + user.userName + ' logged in!');
-            return true;
+            return user;
         },
-        logout: function () { return false; },
-        isLoggedIn: function () {
-            return _isLoggedIn;
-        },
-        currentUser: function () { return user; }
+        logout: function () { return false; }
     };
 });
 
 app.controller('AuthController', function ($scope, AuthService) {
-    $scope._isLoggedIn = false;
+    $scope.isLoggedIn = false;
+    $scope.user = null;
 
     $scope.Login = function () {
         var user = {
             userName: 'KniX'
         }
 
-        $scope._isLoggedIn = AuthService.login(user);
+        $scope.user = AuthService.login(user);
+        if ($scope.user != null) {
+            $scope.isLoggedIn = true;
+        }
     };
 
-    $scope.$watch('_isLoggedIn', function (newValue, oldValue) {
-        if ($scope._isLoggedIn == true) {
+    //Listener / Event
+    $scope.$watch('isLoggedIn', function (newValue, oldValue) {
+        if ($scope.isLoggedIn == true) {
             console.log('woot!');
         }
     });

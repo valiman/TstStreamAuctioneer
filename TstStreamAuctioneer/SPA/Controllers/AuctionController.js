@@ -1,25 +1,44 @@
 ﻿app.controller('AuctionController', function ($scope, $uibModal) {
 
+    var checkTypeName = function (data) {
+        if (data.typeName == 'Buyout') {
+            buyAuction({ userName: 'KniX' }, data);
+        } else if (data.typeName == 'Bid') {
+            bidAuction({ userName: 'KniX' }, data);
+        } else {
+            console.log('AuctionController: Unknown error in function "check type"');
+        }
+    }
+
+    this.bid = function (dataObj) {
+        dataObj.typeName = "Bid"; //assign type
+        handleModal(dataObj);
+    }
+
     this.buyout = function (dataObj) {
+        dataObj.typeName = "Buyout"; //assign type
+        handleModal(dataObj);
+    }
+
+    var handleModal = function (dataObj) {
         if (dataObj != null) {
             console.log(dataObj.userName);
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '/SPA/Views/Modal/Buyout.html',
+                templateUrl: '/SPA/Views/Modal/Auction.html',
                 controller: 'ModalController',
                 size: 'sm',
                 resolve: {
                     data: dataObj
                 }
             });
-            
+
             modalInstance.result.then(function (data) {
-                buyAuction({ userName: 'KniX' }, data);
+                checkTypeName(data);
             }, function () {
                 console.log('Modal dismissed at: ' + new Date());
-                });
+            });
         } else {
-            alert('Error, check console!');
             console.log('No data were sent to buyout function!');
         }
     }
@@ -31,6 +50,13 @@
         $scope.auctionList = $scope.auctionList.filter(function (o) {
             return o.id != auction.id;
         });
+    };
+
+    var bidAuction = function (user, auction) {
+        //This part will be dynamic with signalR.. it has to be auto-updating for everyone viewing the table.
+        console.log('User ' + user.userName + ' initiated in bidding auctionID: ' + auction.id);
+
+        $scope.auctionList[auction.id + 1].highestBid = 10000;
     };
 
     //Data

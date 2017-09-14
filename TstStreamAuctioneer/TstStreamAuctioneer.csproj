@@ -1271,6 +1271,7 @@
     <Content Include="SPA\Controllers\ModalController.js" />
     <Content Include="SPA\Controllers\TabsController.js" />
     <Content Include="SPA\Views\Left.html" />
+    <Content Include="SPA\Views\Modal\Auction.html" />
     <Content Include="SPA\Views\Modal\Buyout.html" />
     <Content Include="SPA\Views\Right.html" />
     <Content Include="Web.config" />

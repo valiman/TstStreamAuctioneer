@@ -1,7 +1,7 @@
 ﻿<div ng-controller="AuctionController as auctionCtrl">
     <p>
         <div class="form-group form-inline auction-form">
-            <div ng-show="_isLoggedIn">
+            <div ng-show="isLoggedIn">
                 <button type="button"
                         class="btn btn-default form-control"
                         ng-class="{disabled:(tableRowSelectedData.row == null)}"
@@ -12,7 +12,8 @@
                 <button type="button"
                         class="btn btn-default form-control"
                         ng-class="{disabled:(bidValue == null)}"
-                        ng-model="bidBtn">
+                        ng-model="bidBtn"
+                        ng-click="auctionCtrl.bid(tableRowSelectedData.row)">
                     Bid
                 </button>
                 <input class="form-control" type="number" ng-model="bidValue" id="bidValue"> $

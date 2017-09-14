@@ -1,8 +1,8 @@
 ﻿<div ng-controller="TabsController as tabsCtrl">
-    <p ng-show="_isLoggedIn">
+    <p ng-show="isLoggedIn">
         <uib-tabset>
             <uib-tab index="1">
-                <uib-tab-heading>{{user.useName}}</uib-tab-heading>
+                <uib-tab-heading>{{user.userName}}</uib-tab-heading>
                 first tab
             </uib-tab>
             <uib-tab index="2">
@@ -22,8 +22,9 @@
             </uib-tab>
         </uib-tabset>
     </p>
-    <p ng-show="!_isLoggedIn">
-        Login through Twitch.TV-OAuth to see your options.
+    <p ng-show="!isLoggedIn">
+        Login through Twitch.tv OAuth to see your options.
+        <br /><br />
         <button class="btn btn-default" ng-click="Login()">Login</button>
     </p>
 </div>

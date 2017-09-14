@@ -1,12 +1,12 @@
 ﻿<div id="modal">
     <div class="modal-header">
         <center>
-            <h2 center>Buyout</h2>
+            <h2 center>{{dataObject.typeName}}</h2>
         </center>
     </div>
     <div class="modal-body">
         <center>
-            You've decided to Buyout on <i>{{dataObject.userName}}</i>
+            You've decided to {{dataObject.typeName}} on <i>{{dataObject.userName}}</i>
         </center>
         <ul>
             <li>Price: {{dataObject.price | currency}}</li>
@@ -17,6 +17,6 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-default pull-left" ng-click="cancel()">Cancel</button>
-        <button class="btn btn-default pull-right" ng-click="okBuy()">Buyout</button>
+        <button class="btn btn-default pull-right" ng-click="ok(dataObject.typeName)">{{dataObject.typeName}}</button>
     </div>
 </div>
