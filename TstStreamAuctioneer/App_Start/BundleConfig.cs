@@ -15,7 +15,8 @@ namespace TstStreamAuctioneer
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/angular-ui/ui-bootstrap.min.js",
                         "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
-                        "~/Scripts/DataTables/jquery.dataTables.min.js"
+                        "~/Scripts/DataTables/jquery.dataTables.min.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap.min.js"
                        ));
 
             //Core AngularJS files
@@ -29,8 +30,8 @@ namespace TstStreamAuctioneer
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/ui-bootstrap-csp.css",
-                      "~/Content/DataTables/css/jquery.dataTables.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/DataTables/css/dataTables.bootstrap.min.css",
+                      "~/Content/Site.css"));
         }
     }
 }

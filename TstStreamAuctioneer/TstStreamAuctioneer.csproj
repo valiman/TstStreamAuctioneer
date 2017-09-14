@@ -261,6 +261,7 @@
     <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\dataTables.material.css" />
     <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\datatables.min.css" />
     <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
     <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
     <Content Include="Content\DataTables\css\dataTables.uikit.css" />
@@ -511,6 +512,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\DataTables\datatable.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1271,8 +1273,8 @@
     <Content Include="SPA\Controllers\ModalController.js" />
     <Content Include="SPA\Controllers\TabsController.js" />
     <Content Include="SPA\Views\Left.html" />
-    <Content Include="SPA\Views\Modal\Auction.html" />
-    <Content Include="SPA\Views\Modal\Buyout.html" />
+    <Content Include="SPA\Views\Modal\ViewAuction.html" />
+    <Content Include="SPA\Views\Modal\CreateAuction.html" />
     <Content Include="SPA\Views\Right.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

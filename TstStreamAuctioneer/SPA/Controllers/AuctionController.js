@@ -1,13 +1,20 @@
 ﻿app.controller('AuctionController', function ($scope, $uibModal) {
 
-    var checkTypeName = function (data) {
-        if (data.typeName == 'Buyout') {
-            buyAuction({ userName: 'KniX' }, data);
-        } else if (data.typeName == 'Bid') {
-            bidAuction({ userName: 'KniX' }, data);
-        } else {
-            console.log('AuctionController: Unknown error in function "check type"');
-        }
+    this.create = function () {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/SPA/Views/Modal/CreateAuction.html',
+            controller: 'ModalController',
+            resolve: {
+                data: null //required cuz its using the generic modal, which isnt that generic apperently x_X .. fix it.
+            }
+        });
+
+        modalInstance.result.then(function (data) {
+            //checkTypeName(data);
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
     }
 
     this.bid = function (dataObj) {
@@ -20,12 +27,22 @@
         handleModal(dataObj);
     }
 
+    var checkTypeName = function (data) {
+        if (data.typeName == 'Buyout') {
+            buyAuction({ userName: 'KniX' }, data);
+        } else if (data.typeName == 'Bid') {
+            bidAuction({ userName: 'KniX' }, data);
+        } else {
+            console.log('AuctionController: Unknown error in function "check type"');
+        }
+    }
+
     var handleModal = function (dataObj) {
         if (dataObj != null) {
             console.log(dataObj.userName);
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '/SPA/Views/Modal/Auction.html',
+                templateUrl: '/SPA/Views/Modal/ViewAuction.html',
                 controller: 'ModalController',
                 size: 'sm',
                 resolve: {
@@ -74,11 +91,8 @@
                 price: (31 + rndN * i),
                 highestBid: (3 + rndN * i)
             };
-
             auctionListStorage.push(obj);
-        }
-
-
+        };
         $scope.auctionList = auctionListStorage.slice(0, 10); //first page..
     };
     fillAuctList();
@@ -100,7 +114,7 @@
 
     //Auction Table Row Events
     $scope.tableRowSelectedData = {};
-
+    
     $(document).ready(function ($scope) {
         var auctionTable = $('#auctionTable').DataTable({
             paging: false,

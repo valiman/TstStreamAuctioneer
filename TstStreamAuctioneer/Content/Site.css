@@ -38,3 +38,6 @@ body {
     background-color: #434857;
 }
     */
+#auctionTable {
+    border: solid 0.5px white;
+}
