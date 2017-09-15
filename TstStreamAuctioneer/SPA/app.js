@@ -29,7 +29,8 @@ app.controller('AuthController', function ($scope, AuthService) {
 
     $scope.Login = function () {
         var user = {
-            userName: 'KniX'
+            userName: 'KniX',
+            avgViewers: 1337
         }
 
         $scope.user = AuthService.login(user);

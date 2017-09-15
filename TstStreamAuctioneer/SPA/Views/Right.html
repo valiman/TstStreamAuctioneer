@@ -50,6 +50,6 @@
 ng-model holds the clicked-number/page.
 ng-change calls the method responsible for getting the next 10 rows.
 -->
-        <ul uib-pagination total-items="30" max-size="10" ng-model="currentPage" ng-change="setPage()"></ul>
+        <ul uib-pagination total-items="auctionListStorage.length" max-size="10" ng-model="currentPage" ng-change="setPage()"></ul>
     </p>
 </div>

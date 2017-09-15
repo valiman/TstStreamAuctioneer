@@ -11,13 +11,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" disabled="disabled">
+                            <input class="form-control" id="username" disabled="disabled" value="{{dataObj.userName}}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="avgViewers">Avg Viwers:</label>
-                            <input type="number" class="form-control" id="avgViewers" disabled="disabled">
+                            <input class="form-control" id="avgViewers" disabled="disabled" value="{{dataObj.avgViewers | number}}">
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="buyoutValue">Buyout:</label>
-                            <input type="number" class="form-control" id="buyoutValue" ng-model="buyoutNumber">
+                            <input type="number" class="form-control" id="buyoutValue" ng-model="buyoutValue">
                         </div>
                     </div>
                 </div>

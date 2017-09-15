@@ -1,4 +1,6 @@
 ﻿app.controller('AuctionController', function ($scope, $uibModal) {
+    //Global var, for ctrl
+    var rndN = Math.floor((Math.random() * 10) + 1);
 
     this.create = function () {
         var modalInstance = $uibModal.open({
@@ -6,12 +8,12 @@
             templateUrl: '/SPA/Views/Modal/CreateAuction.html',
             controller: 'ModalController',
             resolve: {
-                data: null //required cuz its using the generic modal, which isnt that generic apperently x_X .. fix it.
+                data: $scope.user
             }
         });
 
         modalInstance.result.then(function (data) {
-            //checkTypeName(data);
+            createNewAuction(data);
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -19,12 +21,26 @@
 
     this.bid = function (dataObj) {
         dataObj.typeName = "Bid"; //assign type
-        handleModal(dataObj);
+        bidBuyHandler(dataObj);
     }
 
     this.buyout = function (dataObj) {
         dataObj.typeName = "Buyout"; //assign type
-        handleModal(dataObj);
+        bidBuyHandler(dataObj);
+    }
+
+    var createNewAuction = function (data) {
+        var i = $scope.auctionList.length;
+        var newAuction = {
+            id: i,
+            userRating: ((rndN * i) / 2),
+            userName: data.user.userName,
+            avgViewers: rndN * i,
+            price: data.startBid,
+            highestBid: data.buyoutValue
+        }
+        $scope.auctionListStorage.push(newAuction);
+        console.log('Created new auction!');
     }
 
     var checkTypeName = function (data) {
@@ -37,7 +53,7 @@
         }
     }
 
-    var handleModal = function (dataObj) {
+    var bidBuyHandler = function (dataObj) {
         if (dataObj != null) {
             console.log(dataObj.userName);
             var modalInstance = $uibModal.open({
@@ -76,13 +92,12 @@
         $scope.auctionList[auction.id + 1].highestBid = 10000;
     };
 
-    //Data
+    //Fill auction list with random data. slice into smaller array of 10 rows.
     $scope.auctionList = [];
-    var auctionListStorage = [];
+    $scope.auctionListStorage = [];
 
     var fillAuctList = function () {
         for (var i = 0; i < 30; i++) {
-            var rndN = Math.floor((Math.random() * 10) + 1);
             var obj = {
                 id: i,
                 userRating: ((rndN * i) / 2),
@@ -91,9 +106,9 @@
                 price: (31 + rndN * i),
                 highestBid: (3 + rndN * i)
             };
-            auctionListStorage.push(obj);
+            $scope.auctionListStorage.push(obj);
         };
-        $scope.auctionList = auctionListStorage.slice(0, 10); //first page..
+        $scope.auctionList = $scope.auctionListStorage.slice(0, 10); //first page..
     };
     fillAuctList();
     //End
@@ -106,9 +121,11 @@
 
     $scope.setPage = function () {
         var pageNo = $scope.currentPage;
+        console.log((pageNo - 1) * 10);
+        console.log(pageNo * 10);
 
         $scope.auctionList = []; //clear;
-        $scope.auctionList = auctionListStorage.slice((pageNo * 1), ((pageNo * 1) + 10));
+        $scope.auctionList = $scope.auctionListStorage.slice(((pageNo - 1) * 10), (pageNo * 10));
     };
     //End
 
