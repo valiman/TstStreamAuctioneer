@@ -16,7 +16,7 @@ app.factory('AuthService', function () {
 
     return {
         login: function (user) {
-            console.log('User ' + user.userName + ' logged in!');
+            console.log('Users ' + user.userName + ' logged in!');
             return user;
         },
         logout: function () { return false; }
