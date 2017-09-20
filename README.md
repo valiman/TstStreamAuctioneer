@@ -2,7 +2,7 @@
 Streamers from eg. Twitch & Youtube can auction their hosting
 
 ### Dev. plan/thoughts:
-1) Create entire frontend first, with angular you can add fake data. (done)
+1) Create entire frontend first, with angularjs & jquery, add tmp data. (done)
 2) Create supporting backend, with SignalR & MVC/MySQL/API (started with db/api)
 	
 ### Separation of projects, in VS.
