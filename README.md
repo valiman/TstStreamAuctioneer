@@ -4,14 +4,13 @@ Streamers from eg. Twitch & Youtube can auction their hosting
 ### Dev. plan:
 1) Create entire frontend first, with angular you can add fake data. (done)
 2) Create supporting backend, with SignalR & MVC/MySQL/API (started with db/api)
-	> Separate projects in VS.
-		. Database & API: ip/api/asdas
-		. SignalR
+	
+### Separation of projects, in VS.
+	* Database & API: ip/api/asdas
+	* SignalR
 
 ### Login
-	```
 	OAuth (Twitch)
-	```
 ### User
 	```
 	List Auctions (Done JS. Should be available for all.)
