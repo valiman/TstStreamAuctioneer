@@ -5,8 +5,8 @@ Dev. plan:
 1) Create entire frontend first, with angular you can add fake data. (done)
 2) Create supporting backend, with SignalR & MVC/MySQL/API (started with db/api)
 	> Separate projects in VS.
-		- Database & API: ip/api/asdas
-		- SignalR
+		. Database & API: ip/api/asdas
+		. SignalR
 
 - Login
 	> OAuth (Twitch)
@@ -24,6 +24,8 @@ Dev. plan:
 	History 
 		- Bid List
 		- Auctions (Re-create w/ same settings: option)
+
+
 
 Database:
 	> 
