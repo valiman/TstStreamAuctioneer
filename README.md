@@ -11,7 +11,7 @@ Dev. plan:
 - Login
 	> OAuth (Twitch)
 - User
-	> 
+	> {
 	List Auctions (Done JS. Should be available for all.)
 		* Bid (Done JS.)
 		* BuyOut (Done JS.)
@@ -24,6 +24,7 @@ Dev. plan:
 	History 
 		* Bid List
 		* Auctions (Re-create w/ same settings: option)
+		}
 
 Database:
 	> 
