@@ -11,20 +11,19 @@ Dev. plan:
 - Login
 	> OAuth (Twitch)
 - User
-	> (
+	>
 	List Auctions (Done JS. Should be available for all.)
-		* Bid (Done JS.)
-		* BuyOut (Done JS.)
+		- Bid (Done JS.)
+		- BuyOut (Done JS.)
 	Create Auction (Done JS.)
-		* Start date (passive, on create)
-		* Title (passive, Twitch-channel name)
-		* Details (max chars: 140)
-		* Stop date (passive, 48 hours.)
-		* Channel & data taken from twitch-api
+		- Start date (passive, on create)
+		- Title (passive, Twitch-channel name)
+		- Details (max chars: 140)
+		- Stop date (passive, 48 hours.)
+		- Channel & data taken from twitch-api
 	History 
-		* Bid List
-		* Auctions (Re-create w/ same settings: option)
-		)
+		- Bid List
+		- Auctions (Re-create w/ same settings: option)
 
 Database:
 	> 
