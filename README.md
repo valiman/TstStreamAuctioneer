@@ -28,10 +28,10 @@ Streamers from eg. Twitch & Youtube can auction their hosting
 
 ### Database:
 	Models; code first!
-		* **Auction**:	id, startDate, endDate, bidPrice, buyoutPrice, User(c# obj)
-		* **User**:		id, creationDate, List<Auction> (c# list), oauthstuff..
-		* **UserStats**:	id, statsDate, userId, avgViewers
-		* **Bid**:		id, userId, auctionId, bidPrice
+		* Auction:	id, startDate, endDate, bidPrice, buyoutPrice, User(c# obj)
+		* User:		OAuth
+		* UserStats:	id, statsDate, userId, avgViewers
+		* Bid:		id, userId, auctionId, bidPrice
 
 ### Note to self:
 	* Create the frontend first, then add the backend. Easier!
