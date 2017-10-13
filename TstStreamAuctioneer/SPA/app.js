@@ -12,37 +12,80 @@ app.directive('rightView', function () {
     }
 });
 
-app.factory('AuthService', function () {
+app.service('ApiCalls', function (Api, $rootScope) {
 
-    return {
-        login: function (user) {
-            console.log('User ' + user.userName + ' logged in!');
-            return user;
-        },
-        logout: function () { return false; }
+    this.GetAuctions = function (callback) {
+        Api.GetApiCall('Auction', 'GetAuctions', null, callback);
+    };
+
+    this.GetTokenAuth = function (callback) {
+        Api.TokenAuth(callback);
+    };
+
+    this.GetUserData = function (callback) {
+        var token_session = JSON.parse(localStorage.getItem('bearer'));
+
+        headers = {
+            Authorization: 'Bearer ' + token_session.access_token
+        }
+
+        Api.GetApiCall('Account', 'GetUserData', headers, callback);
     };
 });
 
-app.controller('AuthController', function ($scope, AuthService) {
-    $scope.isLoggedIn = false;
-    $scope.user = null;
+app.factory('AuthService', function (ApiCalls, $rootScope) {
 
-    $scope.Login = function () {
-        var user = {
-            userName: 'KniX',
-            avgViewers: 1337
-        }
+    return {
+        login: function () {
+            //Check if token time-out, if so. renew.
+            //var token_session = JSON.parse(localStorage.getItem('bearer'));
+            //console.log(token_session.expires_in);
 
-        $scope.user = AuthService.login(user);
-        if ($scope.user != null) {
-            $scope.isLoggedIn = true;
-        }
+            ApiCalls.GetTokenAuth(function (event) {
+                if (event.hasErrors) {
+                    console.log(event.error);
+                    
+                } else {
+                    console.log(event.result.data);
+
+                    //Save bearer token
+                    localStorage.setItem('bearer', JSON.stringify(event.result.data));
+                    console.log('bearer saved to local storage.');
+
+                    ApiCalls.GetUserData(function (event) {
+                        if (event.hasErrors) {
+                            console.log(event.error);
+                        } else {
+                            console.log(event.result.data);
+
+                            $rootScope.user = event.result.data;
+
+                            if ($rootScope.user != null) {
+                                $rootScope.loggedIn = true;
+                            }
+                        }
+                    });
+                }
+            });
+
+        },
+        logout: function () { return false; }
     };
 
-    //Listener / Event
-    $scope.$watch('isLoggedIn', function (newValue, oldValue) {
-        if ($scope.isLoggedIn == true) {
-            console.log('woot!');
+    function GetUsers() {
+        var token_session = JSON.parse(localStorage.getItem('bearer'));
+
+        headers = {
+            Authorization: 'Bearer ' + token_session.access_token
         }
-    });
+
+        Api.GetApiCall('Auction', 'GetUsers', headers, function (event) {
+            if (event.hasErrors) {
+                console.log('TestApi Error: ');
+                console.log(event);
+            } else {
+                console.log(event.result.data);
+            }
+        });
+    }
 });

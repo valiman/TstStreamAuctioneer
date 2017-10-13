@@ -1,4 +1,4 @@
-﻿app.controller('AuctionController', function ($scope, $uibModal) {
+﻿app.controller('AuctionController', function ($rootScope, $scope, $uibModal, ApiCalls) {
     //Global var, for ctrl
     var rndN = Math.floor((Math.random() * 10) + 1);
 
@@ -96,26 +96,35 @@
     $scope.auctionList = [];
     $scope.auctionListStorage = [];
 
-    var fillAuctList = function () {
-        for (var i = 0; i < 30; i++) {
-            var obj = {
-                id: i,
-                userRating: ((rndN * i) / 2),
-                userName: 'user' + i,
-                avgViewers: rndN * i,
-                price: (31 + rndN * i),
-                highestBid: (3 + rndN * i)
-            };
-            $scope.auctionListStorage.push(obj);
-        };
-        $scope.auctionList = $scope.auctionListStorage.slice(0, 10); //first page..
+    $rootScope.handleAuctions = function (auctionList) {
+        $scope.auctionList = auctionList.slice(0, 10); //first page..
     };
-    fillAuctList();
-    //End
 
-    //Pagination
-    //- fake data: pull $from - $to (page)
-    //- real data: request $from - $to (page)
+    ApiCalls.GetAuctions(function (event) {
+        if (event.hasErrors) {
+            console.log(event.error);
+        } else {
+
+            //Convert it in a way we like it :)
+            var users = event.result.data;
+            for (var i = 0; i < users.length; i++) {
+                for (var j = 0; j < users[i].Auctions.length; j++) {
+                    var auct = {
+                        id: users[i].Auctions[j].Id,
+                        userRating: users[i].Rating,
+                        userName: users[i].UserName,
+                        avgViewers: 0,
+                        price: users[i].Auctions[j].BidPrice,
+                        highestBid: users[i].Auctions[j].BuyoutPrice
+                    };
+
+                    $scope.auctionListStorage.push(auct);
+                }
+            }
+
+            $scope.auctionList = $scope.auctionListStorage.slice(0, 10); //first page..
+        }
+    });
 
     $scope.currentPage = 1;
 

@@ -1268,10 +1268,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="SPA\ApiService.js" />
     <Content Include="SPA\app.js" />
     <Content Include="SPA\Controllers\AuctionController.js" />
+    <Content Include="SPA\Controllers\AuthController.js" />
     <Content Include="SPA\Controllers\ModalController.js" />
-    <Content Include="SPA\Controllers\TabsController.js" />
     <Content Include="SPA\Views\Left.html" />
     <Content Include="SPA\Views\Modal\ViewAuction.html" />
     <Content Include="SPA\Views\Modal\CreateAuction.html" />
