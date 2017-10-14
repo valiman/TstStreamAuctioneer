@@ -2,8 +2,6 @@
     $rootScope.loggedIn = false;
     $rootScope.user = null;
 
-    $scope.isLoggedIn = false;
-
     $scope.Login = function () {
         $rootScope.grant = {
             grant_type: "password",
@@ -11,17 +9,11 @@
             password: $scope.userPassword
         }
 
+        //clear
+        $scope.userName = null;
+        $scope.userPassword = null;
+
         //Do login
         AuthService.login();
     };
-
-    //Listener / Event
-    $scope.$watch('loggedIn', function (newValue, oldValue) {
-
-        if ($rootScope.loggedIn == true) {
-            $scope.isLoggedIn = true;
-            console.log('Event: Logged in!');
-        }
-
-    });
 });

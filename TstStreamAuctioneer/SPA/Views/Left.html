@@ -1,4 +1,4 @@
-﻿<p ng-show="isLoggedIn">
+﻿<p ng-show="loggedIn">
     <uib-tabset>
         <uib-tab index="1">
             <uib-tab-heading>{{user.UserName}}</uib-tab-heading>
@@ -29,7 +29,7 @@
     </uib-tabset>
 </p>
 <p>
-    <div class="form-group" ng-show="!isLoggedIn">
+    <div class="form-group" ng-show="!loggedIn">
 
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

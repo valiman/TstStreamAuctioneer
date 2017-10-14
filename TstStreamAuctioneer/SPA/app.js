@@ -31,6 +31,43 @@ app.service('ApiCalls', function (Api, $rootScope) {
 
         Api.GetApiCall('Account', 'GetUserData', headers, callback);
     };
+
+    this.GetUsers = function (callback)
+    {
+        var token_session = JSON.parse(localStorage.getItem('bearer'));
+
+        headers = {
+            Authorization: 'Bearer ' + token_session.access_token
+        }
+
+        Api.GetApiCall('Auction', 'GetUsers', headers, function (event) {
+            if (event.hasErrors) {
+                console.log('TestApi Error: ');
+                console.log(event);
+            } else {
+                console.log(event.result.data);
+            }
+        });
+    };
+
+    /* ^ ctrl+x this when u need it
+    function GetUsers() {
+        var token_session = JSON.parse(localStorage.getItem('bearer'));
+
+        headers = {
+            Authorization: 'Bearer ' + token_session.access_token
+        }
+
+        ApiCalls.GetUsers(function (event) {
+            if (event.hasErrors) {
+                console.log('TestApi Error: ');
+                console.log(event);
+            } else {
+                console.log(event.result.data);
+            }
+        });
+    }
+    */
 });
 
 app.factory('AuthService', function (ApiCalls, $rootScope) {
@@ -52,19 +89,7 @@ app.factory('AuthService', function (ApiCalls, $rootScope) {
                     localStorage.setItem('bearer', JSON.stringify(event.result.data));
                     console.log('bearer saved to local storage.');
 
-                    ApiCalls.GetUserData(function (event) {
-                        if (event.hasErrors) {
-                            console.log(event.error);
-                        } else {
-                            console.log(event.result.data);
-
-                            $rootScope.user = event.result.data;
-
-                            if ($rootScope.user != null) {
-                                $rootScope.loggedIn = true;
-                            }
-                        }
-                    });
+                    GetUserData();
                 }
             });
 
@@ -72,19 +97,18 @@ app.factory('AuthService', function (ApiCalls, $rootScope) {
         logout: function () { return false; }
     };
 
-    function GetUsers() {
-        var token_session = JSON.parse(localStorage.getItem('bearer'));
-
-        headers = {
-            Authorization: 'Bearer ' + token_session.access_token
-        }
-
-        Api.GetApiCall('Auction', 'GetUsers', headers, function (event) {
+    function GetUserData() {
+        ApiCalls.GetUserData(function (event) {
             if (event.hasErrors) {
-                console.log('TestApi Error: ');
-                console.log(event);
+                console.log(event.error);
             } else {
                 console.log(event.result.data);
+
+                $rootScope.user = event.result.data;
+
+                if ($rootScope.user != null) {
+                    $rootScope.loggedIn = true;
+                }
             }
         });
     }

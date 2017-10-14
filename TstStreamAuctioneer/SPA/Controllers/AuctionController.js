@@ -29,7 +29,7 @@
         bidBuyHandler(dataObj);
     }
 
-    var createNewAuction = function (data) {
+    var createNewAuction = function (data) { <-- work on this next :)
         var i = $scope.auctionList.length;
         var newAuction = {
             id: i,
@@ -95,10 +95,6 @@
     //Fill auction list with random data. slice into smaller array of 10 rows.
     $scope.auctionList = [];
     $scope.auctionListStorage = [];
-
-    $rootScope.handleAuctions = function (auctionList) {
-        $scope.auctionList = auctionList.slice(0, 10); //first page..
-    };
 
     ApiCalls.GetAuctions(function (event) {
         if (event.hasErrors) {

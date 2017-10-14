@@ -1,7 +1,7 @@
 ﻿<div ng-controller="AuctionController as auctionCtrl">
     <p>
         <div class="form-group form-inline auction-form">
-            <div ng-show="isLoggedIn">
+            <div ng-show="loggedIn">
                 <p>
                     <button type="button" class="btn btn-default form-control" ng-disabled="tableRowSelectedData.row == null" ng-model="buyoutBtn" ng-click="auctionCtrl.buyout(tableRowSelectedData.row)">
                         Buyout
